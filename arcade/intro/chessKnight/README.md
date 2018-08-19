@@ -2,19 +2,19 @@ Given a position of a knight on the standard chessboard, find the number of diff
 
 The knight can move to a square that is two squares horizontally and one square vertically, or two squares vertically and one square horizontally away from it. The complete move therefore looks like the letter L. Check out the image below to see all valid moves for a knight piece that is placed on one of the central squares.
 
-[<img src="https://codefightsuserpics.s3.amazonaws.com/tasks/chessKnight/img/knight.jpg?_tm=1530791321381">](https://codefightsuserpics.s3.amazonaws.com/tasks/chessKnight/img/knight.jpg?_tm=1530791321381)
+![](https://github.com/danchann/codefights/blob/master/arcade/intro/chessKnight/knight.jpg)
 
 **Example**
 
 For cell = "a1", the output should be
 chessKnight(cell) = 2.
 
-[<img src="https://codefightsuserpics.s3.amazonaws.com/tasks/chessKnight/img/ex_1.jpg?_tm=1530791321641">](https://codefightsuserpics.s3.amazonaws.com/tasks/chessKnight/img/ex_1.jpg?_tm=1530791321641)
+[<img src="https://github.com/danchann/codefights/blob/master/arcade/intro/chessKnight/ex_1.jpg">](https://github.com/danchann/codefights/blob/master/arcade/intro/chessKnight/ex_1.jpg)
 
 For cell = "c2", the output should be
 chessKnight(cell) = 6.
 
-[<img src="https://codefightsuserpics.s3.amazonaws.com/tasks/chessKnight/img/ex_2.jpg?_tm=1530791321912">](https://codefightsuserpics.s3.amazonaws.com/tasks/chessKnight/img/ex_2.jpg?_tm=1530791321912)
+[<img src="https://github.com/danchann/codefights/blob/master/arcade/intro/chessKnight/ex_2.jpg">](https://github.com/danchann/codefights/blob/master/arcade/intro/chessKnight/ex_2.jpg)
 
 **Input/Output**
 
