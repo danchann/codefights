@@ -4,10 +4,10 @@ I use this repository for solutions to the programming challenges that I complet
 ## Challenge Descriptions
 CodeFights gives you a task description, which you have to program a solution of maximum efficiency for.  The description for each of the tasks in this repo are below...
 
-* [digitsProduct](https://github.com/danchann/codefights/tree/master/arcade/intro/digitsProduct)
-* [chessKnight](https://github.com/danchann/codefights/tree/master/arcade/intro/chessKnight)
-* [almostIncreasingSequence](https://github.com/danchann/codefights/tree/master/arcade/intro/almostIncreasingSequence)
-* [matrixElementsSum](https://github.com/danchann/codefights/tree/master/arcade/intro/matrixElementsSum)
+* [digitsProduct](https://github.com/danchann/codefights/tree/master/arcade/intro/56-digitsProduct)
+* [chessKnight](https://github.com/danchann/codefights/tree/master/arcade/intro/50-chessKnight)
+* [almostIncreasingSequence](https://github.com/danchann/codefights/tree/master/arcade/intro/07-almostIncreasingSequence)
+* [matrixElementsSum](https://github.com/danchann/codefights/tree/master/arcade/intro/08-matrixElementsSum)
 
 
 <details>
