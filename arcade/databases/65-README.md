@@ -13,7 +13,7 @@ Given the **itemIds** table, compose the resulting table with two columns: `o
 For the following table **itemIds**
 
 | id |
----
+---|
 | 1 |
 | 12 |
 | 23 |
