@@ -1,43 +1,46 @@
-You work for an online store in which each item put up for sale gets a unique randomly generated id.
+Medium
 
-These item ids are stored in the **itemIds** table with only one column:
+Codewriting
 
--   `id`: unique id of an item.
+300
 
-However, this system proved to be not very convenient to use in a number of queries that required consecutive ids. To solve this problem, you decided to generate new ids for the items using the following algorithm: the item with the smallest `id` would get `1` as a new id, the second smallest would get `2`, and so on.
+You noticed that your server is running out of free HDD space. You investigated and discovered that most of the space is taken up by the **workers_info** table, which has the following structure:
 
-Given the **itemIds** table, compose the resulting table with two columns: `oldId` and `newId`. The first column should contain the old item id, and the second one should contain the new id generated as described above. The table should be sorted by the `newId` in *ascending* order.
+-   `id`: the unique worker ID;
+-   `name`: the name of the worker;
+-   `date_of_birth`: the worker's date of birth;
+-   `salary`: the worker's salary.
+
+One strange thing about this table is that a lot of its rows contain `NULL` values in some of the columns (except for the `id` column, which always contains a non-NULL value).
+
+After thinking about this problem, you've decided to change the way you store data in **workers_info**. Instead of keeping the cells with `NULL` values in the table, you will only store `id`, `column_name`, and `value` columns. `column_name`will contain the name of a column that contains a non-NULL value for each `id`. `value` will be the value from this row, converted to a string. For dates, use the format `YYYY-MM-DD`.
+
+Given the **workers_info** table, compose a results table that has the following three columns: `id`, `column_name`, and `value`, that contain the workers' `id`s, the column names, and the stringified values, in the format described above. The table should be sorted in ascending order by `id`. Rows with the same `id` should be sorted by column names in the following order: `name`, `date_of_birth`, and then `salary`.
 
 **Example**
 
-For the following table **itemIds**
+For the following table **workers_info**, where empty cells stand for a `NULL` value
 
-| id |
----|
-| 1 |
-| 12 |
-| 23 |
-| 42 |
-| 49 |
-| 678 |
-| 3242 |
-| 9320 |
-| 67867 |
-| 84523 |
+| id | name | date_of_birth | salary |
+---|---|---|---|
+| 1 | Justin Penrose | 1969-03-01 | 3000 |
+| 2 |  |  |  |
+| 3 | Robt Claire |  |  |
+| 10 |  | 1970-12-12 |  |
+| 11 |  |  | 5000 |
+| 12 | Yuk Kluge |  | 4500 |
 
 the output should be
 
-| oldId | newId |
----|---
-| 1 | 1 |
-| 12 | 2 |
-| 23 | 3 |
-| 42 | 4 |
-| 49 | 5 |
-| 678 | 6 |
-| 3242 | 7 |
-| 9320 | 8 |
-| 67867 | 9 |
-| 84523 | 10 |
+| id | column_name | value |
+---|---|---|
+| 1 | name | Justin Penrose |
+| 1 | date_of_birth | 1969-03-01 |
+| 1 | salary | 3000 |
+| 3 | name | Robt Claire |
+| 10 | date_of_birth | 1970-12-12 |
+| 11 | salary | 5000 |
+| 12 | name | Yuk Kluge |
+| 12 | salary | 4500 |
 
 -   **[execution time limit] 10 seconds (mysql)**
