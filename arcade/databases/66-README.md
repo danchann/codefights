@@ -1,41 +1,43 @@
-The store you're working for has decided to organize a special holiday event: every `4^th^` purchase made during this event grants the lucky person who made it a special prize.
+You work for an online store in which each item put up for sale gets a unique randomly generated id.
 
-All purchases made during the event are stored in the database table **purchases** with the following structure:
+These item ids are stored in the **itemIds**table with only one column:
 
--   `timestamp`: unique purchase timestamp;
--   `buyer_name`: the name of the person who made this purchase.
+-   `id`: unique id of an item.
 
-Given the **purchases** table, compose the resulting table with one column `winners` containing the names of the buyers who won the special prize by making a purchase number `k * 4` for some integer `k`. The numbering of the purchases starts with `1`.\
-Note, that each person can get no more than one prize (i.e. their name can occur in the answer at most once).\
-The table should be sorted by the winners' names in *ascending* order.
+However, this system proved to be not very convenient to use in a number of queries that required consecutive ids. To solve this problem, you decided to generate new ids for the items using the following algorithm: the item with the smallest `id` would get `1` as a new id, the second smallest would get `2`, and so on.
+
+Given the **itemIds** table, compose the resulting table with two columns: `oldId`and `newId`. The first column should contain the old item id, and the second one should contain the new id generated as described above. The table should be sorted by the `newId` in *ascending* order.
 
 **Example**
 
-For the following table **purchases**
+For the following table **itemIds**
 
-| timestamp | buyer_name |
----|---
-| 2014-11-09 15:23:05 | Frank West |
-| 2014-11-09 20:11:02 | Terrence Alexander |
-| 2014-11-10 12:10:00 | Sandy Cohen |
-| 2014-11-10 13:00:11 | Frank West |
-| 2014-11-10 14:09:10 | Sandy Cohen |
-| 2014-11-10 14:15:15 | Leonard Grant |
-| 2014-11-10 17:09:10 | Frank West |
-| 2014-11-10 19:09:10 | Diane Tucker |
-| 2014-11-11 18:09:11 | Pauline Ross |
-| 2014-11-11 20:00:00 | Jasmine Gibson |
-| 2014-11-12 10:12:00 | Kim Neal |
-| 2014-11-12 10:12:01 | Frank West |
-| 2014-11-12 15:14:42 | Sean Kim |
+| id |
+---
+| 1 |
+| 12 |
+| 23 |
+| 42 |
+| 49 |
+| 678 |
+| 3242 |
+| 9320 |
+| 67867 |
+| 84523 |
 
 the output should be
 
-| winners |
----
-| Diane Tucker |
-| Frank West |
-
-because Frank West made the `4^th^`and the `12^th^` purchases, and Diane Tucker's purchase was the `8^th^`.
+| oldId | newId |
+---|---
+| 1 | 1 |
+| 12 | 2 |
+| 23 | 3 |
+| 42 | 4 |
+| 49 | 5 |
+| 678 | 6 |
+| 3242 | 7 |
+| 9320 | 8 |
+| 67867 | 9 |
+| 84523 | 10 |
 
 -   **[execution time limit] 10 seconds (mysql)**
