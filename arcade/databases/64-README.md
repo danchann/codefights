@@ -1,46 +1,35 @@
-Medium
+Your web application tracks the activities of its users using a tracking system. While a user hasn't logged in or signed up, all the user's actions are tracked using `anonymous_id` and the `user_id` is `null`, and afterwards they are tracked using the same `anonymous_id` and `user_id`. It is known that after a user logs in or signs up, the `user_id` is no longer `null`.
 
-Codewriting
+You are given the table **tracks**, which contains the following columns:
 
-300
+-   `received_at` - the unique timestamp of action;
+-   `event_name` - the name of the action that was performed at this time;
+-   `anonymous_id` - the anonymous ID of user;
+-   `user_id` - the user ID, which can be `null`.
 
-You noticed that your server is running out of free HDD space. You investigated and discovered that most of the space is taken up by the **workers_info** table, which has the following structure:
+Your task is to find two events for each `anonymous_id`, which will be the column `anonym_id` in the returned table. Find the last event where the user was tracked only by `anonymous_id` (column `last_null`) and the first event that was tracked by `user_id` (column `first_notnull`). The resulting table should be sorted by `anonym_id`.
 
--   `id`: the unique worker ID;
--   `name`: the name of the worker;
--   `date_of_birth`: the worker's date of birth;
--   `salary`: the worker's salary.
-
-One strange thing about this table is that a lot of its rows contain `NULL` values in some of the columns (except for the `id` column, which always contains a non-NULL value).
-
-After thinking about this problem, you've decided to change the way you store data in **workers_info**. Instead of keeping the cells with `NULL` values in the table, you will only store `id`, `column_name`, and `value` columns. `column_name`will contain the name of a column that contains a non-NULL value for each `id`. `value` will be the value from this row, converted to a string. For dates, use the format `YYYY-MM-DD`.
-
-Given the **workers_info** table, compose a results table that has the following three columns: `id`, `column_name`, and `value`, that contain the workers' `id`s, the column names, and the stringified values, in the format described above. The table should be sorted in ascending order by `id`. Rows with the same `id` should be sorted by column names in the following order: `name`, `date_of_birth`, and then `salary`.
+**Note:** It is not guaranteed that a user ever logs in or signs up. In this case, the column `first_notnull` should have a value of `null`. However, it is guaranteed that for each `anonymous_id`, there is at least one event where `user_id` equals `null`.
 
 **Example**
 
-For the following table **workers_info**, where empty cells stand for a `NULL` value
+For given table **tracks**
 
-| id | name | date_of_birth | salary |
+| received_at | event_name | anonymous_id | user_id |
 ---|---|---|---|
-| 1 | Justin Penrose | 1969-03-01 | 3000 |
-| 2 |  |  |  |
-| 3 | Robt Claire |  |  |
-| 10 |  | 1970-12-12 |  |
-| 11 |  |  | 5000 |
-| 12 | Yuk Kluge |  | 4500 |
+| 2016-01-01 12:13:12 | buttonClicked | 1 | NULL |
+| 2016-01-02 12:14:15 | pageReloaded | 3 | NULL |
+| 2016-02-02 13:15:13 | pageRendered | 2 | NULL |
+| 2016-02-03 13:15:23 | commentWritten | 3 | NULL |
+| 2016-03-03 14:15:15 | avatarUpdated | 2 | 2 |
+| 2016-03-04 14:15:24 | statusUpdated | 1 | 1 |
 
 the output should be
 
-| id | column_name | value |
+| anonym_id | last_null | first_notnull |
 ---|---|---|
-| 1 | name | Justin Penrose |
-| 1 | date_of_birth | 1969-03-01 |
-| 1 | salary | 3000 |
-| 3 | name | Robt Claire |
-| 10 | date_of_birth | 1970-12-12 |
-| 11 | salary | 5000 |
-| 12 | name | Yuk Kluge |
-| 12 | salary | 4500 |
+| 1 | buttonClicked | statusUpdated |
+| 2 | pageRendered | avatarUpdated |
+| 3 | commentWritten | NULL |
 
 -   **[execution time limit] 10 seconds (mysql)**
